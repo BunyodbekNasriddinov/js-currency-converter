@@ -27,17 +27,19 @@ elForm.addEventListener("submit", (evt) => {
   var elInputVal = elInput.value;
   var elSelectVal = elSelect.value;
 
-  if (elSelectVal === "usd") {
-    elRes.textContent = (+elInputVal / USD_TO_UZS).toFixed(2);
-  } else if (elSelectVal === "rub") {
-    elRes.textContent = (+elInputVal / RUB_TO_UZS).toFixed(2);
-  } else if (elSelectVal === "eur") {
-    elRes.textContent = (+elInputVal / EUR_TO_UZS).toFixed(2);
+  if (isNaN(elSelectVal)) {
+    if (elSelectVal === "usd") {
+      elRes.textContent = (+elInputVal / USD_TO_UZS).toFixed(2);
+    } else if (elSelectVal === "rub") {
+      elRes.textContent = (+elInputVal / RUB_TO_UZS).toFixed(2);
+    } else if (elSelectVal === "eur") {
+      elRes.textContent = (+elInputVal / EUR_TO_UZS).toFixed(2);
+    }
   } else {
     elRes.textContent = "Nimadir xato ketdi!";
   }
 
-  switch (elSelect.value) {
+  switch (elSelectVal) {
     case "usd":
       elRes.textContent = `${elRes.textContent} $`;
       break;
@@ -47,6 +49,8 @@ elForm.addEventListener("submit", (evt) => {
     case "eur":
       elRes.textContent = `${elRes.textContent} €`;
       break;
+    default:
+      elRes.textContent = `Nimadir xato ketdi!`;
   }
 });
 
